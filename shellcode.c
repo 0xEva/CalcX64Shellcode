@@ -99,15 +99,13 @@ void main(){
 
     // wchar_t pathBuffer[] = L"\\??\\C:\\Windows\\System32\\calc.exe";
     UNICODE_STRING NtImagePath = {0};
-    NtImagePath.Length = 32 * sizeof(wchar_t);  // 31 characters, each 2 bytes
+    NtImagePath.Length = 32 * sizeof(wchar_t);  // 32 characters, each 2 bytes
     NtImagePath.MaximumLength = NtImagePath.Length + sizeof(wchar_t);  // Plus null terminator
     NtImagePath.Buffer = pathBuffer;
 
-    // RTL_USER_PROCESS_PARAMETERS processParameters = {0};
-    // processParameters.
     // Create the process parameters
-	PRTL_USER_PROCESS_PARAMETERS ProcessParameters = NULL;
-	myRtlCreateProcessParametersEx(&ProcessParameters, &NtImagePath, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, RTL_USER_PROCESS_PARAMETERS_NORMALIZED);
+    PRTL_USER_PROCESS_PARAMETERS ProcessParameters = NULL;
+    myRtlCreateProcessParametersEx(&ProcessParameters, &NtImagePath, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, RTL_USER_PROCESS_PARAMETERS_NORMALIZED);
 
     PS_CREATE_INFO createInfo = {0};
     createInfo.Size = sizeof(PS_CREATE_INFO);
